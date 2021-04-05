@@ -72,7 +72,8 @@
 
 
         <div class="form-group form-group-lg ">
-            <label class=" col-sm-3 control-label" for="formGroupInputLarge"> จากสถานศึกษา </label>
+            <label class=" col-sm-3 control-label" for="formGroupInputLarge"> จากสถานศึกษา</label>   
+            <label stlyle="color:#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;(ไม่ต้องใส่คำว่า "โรงเรียน" ตัวอย่าง "ธาตุนารายณ์วิทยา")</label></br>
             <div class="col-sm-4">
                    
                  <input name="txtLschool" class="form-control input-lg" id="lschool" 
@@ -119,68 +120,40 @@
 
         <div class="caption-full">
 
-
-
-
 <!--h4 class="pull-right">$24.99</h4-->
-<!--
-<h3 class="text-center">
+<!-- <h3 class="text-center">
      <p>
                                 <span class="glyphicon glyphicon-share"></span>
        6.1 โรงเรียนที่ประสงค์เข้าเรียนเป็นการสำรอง
-</h3>
-<div class="alert alert-danger text-center" role="alert">
+</h3> -->
+<!-- <div class="alert alert-danger text-center" role="alert">
 		<i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ส่วนนี้กรุณาระบุชื่อโรงเรียนที่ประสงค์เข้าเรียนเป็นการสำรอง ที่ไม่ใช่โรงเรียนบางละมุง</i>
-    </div>
+    </div> -->
 
 <br>         
 
 <div class="form-group form-group-lg ">
-            <label class=" col-sm-3 control-label" for="formGroupInputLarge"> ระบุชื่อโรงเรียน </label>
+             <label class=" col-sm-3 control-label" for="formGroupInputLarge"> คะแนนสอบ O-NET </label> 
             <div class="col-sm-7">
                    
 
-            <select class="form-control input-lg" name="txtschoolsecond" id="schoolsecond" required="">
-            <option value="">-- กรุณาเลือก --</option>       
-            <option value="โรงเรียนสิงห์สมุทร"
-                 <?php if(isset($_SESSION["EDITE"])){if($_SESSION["EDITE"][55] == "โรงเรียนสิงห์สมุทร"){  echo"selected"; }}?>
-                 >โรงเรียนสิงห์สมุทร
-            </option>
-            <option value="โรงเรียนสัตหีบวิทยาคม"
-                 <?php if(isset($_SESSION["EDITE"])){if($_SESSION["EDITE"][55] == "โรงเรียนสัตหีบวิทยาคม"){  echo"selected"; }}?>
-                 >โรงเรียนสัตหีบวิทยาคม
-            </option>
-            <option value="โรงเรียนศรีราชา"
-                 <?php if(isset($_SESSION["EDITE"])){if($_SESSION["EDITE"][55] == "โรงเรียนศรีราชา"){  echo"selected"; }}?>
-                 >โรงเรียนศรีราชา
-            </option>
-            <option value="โรงเรียนผินแจ่มวิชาสอน"
-                 <?php if(isset($_SESSION["EDITE"])){if($_SESSION["EDITE"][55] == "โรงเรียนผินแจ่มวิชาสอน"){  echo"selected"; }}?>
-                 >โรงเรียนผินแจ่มวิชาสอน
-            </option>       
-            <option value="โรงเรียนโพธิสัมพันธ์พิทยาคาร"
-                 <?php if(isset($_SESSION["EDITE"])){if($_SESSION["EDITE"][55] == "โรงเรียนโพธิสัมพันธ์พิทยาคาร"){  echo"selected"; }}?>
-                 >โรงเรียนโพธิสัมพันธ์พิทยาคาร
-            </option>    
-            <option value="โรงเรียนทุ่งศุขลาพิทยา(กรุงไทยอนุเคราะห์)"
-                 <?php if(isset($_SESSION["EDITE"])){if($_SESSION["EDITE"][55] == "โรงเรียนทุ่งศุขลาพิทยา(กรุงไทยอนุเคราะห์)"){  echo"selected"; }}?>
-                 >โรงเรียนทุ่งศุขลาพิทยา(กรุงไทยอนุเคราะห์)
-            </option>          
-      
-
-            </select>
+            <input name="txtschoolsecond" class="form-control input-lg" id="schoolsecond" 
+                    placeholder="O-NET" type="text" required="" autofocus="" maxlength="4" 
+                    OnKeyPress="return chkNumberAndDot(this)"
+                    value="<?php if(isset($_SESSION["EDITE"])){ echo $_SESSION["EDITE"][55];}?>"
+                    >
 
 
 
                  <!--input name="txtschoolsecond" class="form-control input-lg" id="schoolsecond" 
                     placeholder="ระบุชื่อโรงเรียนสำรอง" type="text" required="" autofocus=""  
                     value="<?php //if(isset($_SESSION["EDITE"])){ echo $_SESSION["EDITE"][55];}?>"
-                    > 
+                    > !-->
             </div>
 
             <div class="col-sm-2"> </div>
  
-        </div>!-->
+        </div>
 
                     
          <?php if(!isset($_GET["edite"])){ ?>

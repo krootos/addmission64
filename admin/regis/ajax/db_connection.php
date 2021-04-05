@@ -1,10 +1,10 @@
 <?php
 
 // Connection variables
-$host = "127.0.0.1:3306"; // MySQL host name eg. localhost
-$user = "kittisak"; // MySQL user. eg. root ( if your on localserver)
-$password = "076200207"; // MySQL user password  (if password is not set for your root user then keep it empty )
-$database = "student"; // MySQL Database name 
+$host = "localhost"; // MySQL host name eg. localhost
+$user = "admission_web"; // MySQL user. eg. root ( if your on localserver)
+$password = "MldwSCiq"; // MySQL user password  (if password is not set for your root user then keep it empty )
+$database = "admission_web"; // MySQL Database name 
 
 /*$host = "127.0.0.1:3306";
 $user = "root";

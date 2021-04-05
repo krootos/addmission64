@@ -11,9 +11,9 @@ function selectstatistic(){
 
                // if ($selectdata = mysql_fetch_array($resultstu)) {
                 $M1  = 0;
-                $M11 = 0;    //ตัวแปรนักเรียนทั่วไป        
-                $M12 = 0;
-                $M13 = 0;
+                $M11 = 0;    //ตัวแปรนักเรียนนอกเขตฯ        
+                $M12 = 0;    //ตัวแปรนักเรียนในเขตฯ
+                $M13 = 0;   
                 $M14 = 0;
 
                 $M4  = 0;
@@ -21,10 +21,22 @@ function selectstatistic(){
                 $M42 = 0;
                 $M43 = 0;
                 $M44 = 0;
-                $checktype1 = "นักเรียนทั่วไป";
+                $M45 = 0;
+                $M46 = 0;
+                $M47 = 0;
+            
+                
+                $checktype1 = "นักเรียนนอกเขตพื้นที่บริการ";
                 $checktype2 = "นักเรียนในเขตพื้นที่บริการ";
-                $checktype3 = "นักเรียนที่มีเงื่อนไขพิเศษ";
-                $checktype4 = "นักเรียนที่มีความสามารถพิเศษ";
+
+                $checktype3 = "วิทยาศาสตร์-คณิตศาสตร์";
+                $checktype4 = "วิทยาศาสตร์-คอมพิวเตอร์";
+                $checktype5 = "อังกฤษ-จีน";
+                $checktype6 = "อังกฤษ-ญี่ปุ่น";
+                $checktype7 = "อังกฤษ-เวียดนาม";
+                $checktype8 = "อังกฤษ-เกาหลี";
+                $checktype9 = "ไทย-สังคม";
+
                 $checksec1   = "1";
                 $checksec4   = "4";
                 $rowall = $rows;
@@ -33,10 +45,10 @@ function selectstatistic(){
                   if(strcmp($row["TYPE"],$checksec1)==0){ 
                       $M1++;
                       if(strcmp($row["OPTIONS"],$checktype1)==0){
-                        $M11++;
+                        $M12++;
                       }
                       if(strcmp($row["OPTIONS"],$checktype2)==0){
-                        $M12++;
+                        $M11++;
                       }
                       if(strcmp($row["OPTIONS"],$checktype3)==0){
                         $M13++;
@@ -48,29 +60,55 @@ function selectstatistic(){
 
                   if(strcmp($row["TYPE"],$checksec4)==0){ 
                       $M4++;
-                      if(strcmp($row["OPTIONS"],$checktype1)==0){
+                      if(strcmp($row["PLAN1"],$checktype3)==0){
                         $M41++;
                       }
-                      if(strcmp($row["OPTIONS"],$checktype2)==0){
+                      if(strcmp($row["PLAN1"],$checktype4)==0){
                         $M42++;
                       }
-                      if(strcmp($row["OPTIONS"],$checktype3)==0){
+                      if(strcmp($row["PLAN1"],$checktype5)==0){
                         $M43++;
                       }
-                      if(strcmp($row["OPTIONS"],$checktype4)==0){
+                      if(strcmp($row["PLAN1"],$checktype6)==0){
                         $M44++;
+                      }
+                      if(strcmp($row["PLAN1"],$checktype7)==0){
+                        $M45++;
+                      }
+                      if(strcmp($row["PLAN1"],$checktype8)==0){
+                        $M46++;
+                      }
+                      if(strcmp($row["PLAN1"],$checktype9)==0){
+                        $M47++;
                       }
                   }  
                 }
    // mysql_close($connected);    
 
-    return array($M1,$M11,$M12,$M13,$M14,$M4,$M41,$M42,$M43,$M44,$rowall);
+    return array($M1,$M11,$M12,$M4,$M41,$M42,$M43,$M44,$M45,$M46,$M47,$M1+$M4);
 }
 
 
-list($M1,$M11,$M12,$M13,$M14,$M4,$M41,$M42,$M43,$M44,$rowall) = selectstatistic();
+list($M1,$M11,$M12,$M4,$M41,$M42,$M43,$M44,$M45,$M46,$M47,$rowall) = selectstatistic();
 
-   /* echo $M1."<br>";
+     $json_data[] = array(
+            "one" => $M1,
+            "two" => $M11,
+            "three" => $M12,
+            "four" => $M13,
+            "five" => $M14,
+            
+            "six" => $M4,
+            "seven" => $M41,
+            "eigth" => $M42,
+            "nine" => $M43,
+            "ten" => $M44,
+            "eleven"  => $M45,
+            "twelve"  => $M46,
+            "thirteen"  => $M47,
+            "fourteen"  => $rowall
+
+     /* echo $M1."<br>";
     echo $M11."<br>";
     echo $M12."<br>";
     echo $M13."<br>";
@@ -91,20 +129,7 @@ list($M1,$M11,$M12,$M13,$M14,$M4,$M41,$M42,$M43,$M44,$rowall) = selectstatistic(
       $a[8] = $M42;
       $a[9] = $M43;
       $a[10] = $M44; */
-
-     $json_data[] = array(
-            "one" => $M1,
-            "two" => $M11,
-            "three" => $M12,
-            "four" => $M13,
-            "five" => $M14,
-            "six" => $M4,
-            "seven" => $M41,
-            "eigth" => $M42,
-            "nine" => $M43,
-            "ten" => $M44,
-       "eleven"  => $rowall
-        );
+);
     
 
 // แปลง array เป็นรูปแบบ json string  

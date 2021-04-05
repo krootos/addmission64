@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `admission_web`
+-- Database: `student`
 --
-CREATE DATABASE IF NOT EXISTS `admission_web` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `admission_web`;
+CREATE DATABASE IF NOT EXISTS `student` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `student`;
 
 -- --------------------------------------------------------
 

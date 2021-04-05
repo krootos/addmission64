@@ -98,7 +98,7 @@
     </div>
         
 <div class="form-group form-group-lg">
-            <label class=" col-sm-3 control-label" style="color:#C7254E;">
+            <label class=" col-sm-3 control-label" style="color:#23527c;">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span> มารดา </label>
 
             <div class="col-sm-9"></div>  
@@ -139,7 +139,7 @@
 
     
     <div class="form-group form-group-lg ">
-            <label class=" col-sm-3 control-label" style="color:#C7254E;" 
+            <label class=" col-sm-3 control-label" style="color:#23527c;" 
             for="formGroupInputLarge"> 
             <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
             Tel. </label>
@@ -397,6 +397,7 @@
          <?php if(!isset($_GET["edite"])){ ?>
 
 
+
         <div class="has-error form-group">
         <div class="col-sm-3">
 
@@ -430,7 +431,7 @@
                 <button class="btn btn-success btn-lg btn-block" name="btnEdite7" 
                 type="submit" value="Login"
                 onclick="if(confirm('ยืนยันการแก้ไขส่วนที่7')) return true; else return false;">
-                    แก้ไขส่วนที่ 7   <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
+                    บันทึกการแก้ไขส่วนที่ 7   <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
                 </button>
             </div>
         </div>

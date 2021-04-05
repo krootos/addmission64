@@ -69,19 +69,26 @@ function GetUserDetails(id) {
 
 function UpdateUserDetails() {
     // get values
-    var regisno = $("#update_regisno").val();
-    var regispwd = $("#update_regispwd").val();
-    var regisnaid = $("#update_regisnaid").val();
+    var regisnaid = $("#update_regisnaid").val();  
+    var regisnewnaid = $("#update_regisnewnaid").val();
+    
+    
+
+    
 
     // get hidden field value
     var id = $("#hidden_user_id").val();
 
+
+    confirm(regisnaid);
+    confirm(regisnewnaid);
+
     // Update the details by requesting to the server using ajax
     $.post("ajax/updateUserDetails.php", {
             id: id,
-            regisno: regisno,
-            regispwd: regispwd,
-            regisnaid: regisnaid
+            regisnaid: regisnaid,
+            regisnewnaid: regisnewnaid
+            
         },
         function (data, status) {
             // hide modal popup

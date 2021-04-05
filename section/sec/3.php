@@ -160,7 +160,7 @@
                 type="submit" value="Login"
                 onclick="if(confirm('ยืนยันการแก้ไขส่วนที่3')) return true; else return false;"
                 >
-                    แก้ไขส่วนที่ 3   <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                    บันทึกการแก้ไขส่วนที่ 3   <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
                 </button>
             </div>
         </div>

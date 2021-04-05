@@ -143,7 +143,7 @@ body {
      >เลขบัตรประชาชน</option>
          <option value="OPTIONS"<?php if(isset($_REQUEST["cat"])){ if($_REQUEST["cat"] == "OPTIONS"){  echo"selected"; }} ?>
      >ประเภทนักเรียน</option>
-          <!-- <option value="RegisStatus"<?php if(isset($_REQUEST["cat"])){ if($_REQUEST["cat"] == "RegisStatus"){  echo"selected"; }} ?>
+          <option value="RegisStatus"<?php if(isset($_REQUEST["cat"])){ if($_REQUEST["cat"] == "RegisStatus"){  echo"selected"; }} ?>
      >สถานะการยืนยัน</option>
 
 
@@ -162,7 +162,7 @@ body {
 <option value="TYPE25"<?php if(isset($_REQUEST["cat"])){ if($_REQUEST["cat"] == "TYPE27"){  echo"selected"; }} ?>
      >27 : ระดับชั้นที่สมัครเสร็จสิ้น</option>
      <option value="DAYCOME"<?php if(isset($_REQUEST["cat"])){ if($_REQUEST["cat"] == "DAYCOME"){  echo"selected"; }} ?>
-     >วันที่มายื่นเอกสาร</option> -->
+     >วันที่มายื่นเอกสาร</option>
 
 </select>
 </div>
@@ -179,26 +179,23 @@ body {
       }
        ?>>ทั้งหมด</a>
 <br><br>
-
-        <a class="btn btn-default" href="index.php?le=1"> ม.1 ทั้งหมด</a>
+<a class="btn btn-default" href="index.php?le=6"> ม.1 ทั้งหมด</a>
         <a class="btn btn-default" href="index.php?le=1&op=นักเรียนในเขตพื้นที่บริการ"> ม.1 ในเขตฯ</a>
         <a class="btn btn-default" href="index.php?le=1&op=นักเรียนนอกเขตพื้นที่บริการ"> ม.1 นอกเขตฯ</a>
-        <a class="btn btn-default" href="index.php?le=1&op=ส่งเอกสารแล้ว"> ม.1 ส่งเอกสารแล้ว</a><p>&nbsp;</p>
+        <!-- <a class="btn btn-default" href="index.php?le=1&op=นักเรียนที่มีเงื่อนไขพิเศษ"> ม.1 เงื่อนไขพิเศษ</a>
+        <a class="btn btn-default" href="index.php?le=1&op=นักเรียนที่มีความสามารถพิเศษ"> ม.1 ความสามารถพิเศษ</a> -->
         
+        <br/>
 
+        <!-- <a class="btn btn-default" href="index.php?le=4&op=นักเรียนทั่วไป"> ม.4 ทั่วไป</a>
+        <a class="btn btn-default" href="index.php?le=4&op=นักเรียนที่มีเงื่อนไขพิเศษ"> ม.4 เงื่อนไขพิเศษ</a>
+        <a class="btn btn-default" href="index.php?le=4&op=นักเรียนที่มีความสามารถพิเศษ"> ม.4 ความสามารถพิเศษ</a> -->
+        <br/>
         <a class="btn btn-default" href="index.php?le=4"> ม.4 ทั้งหมด</a>
-        <a class="btn btn-default" href="index.php?le=4&op=วิทยาศาสตร์-คณิตศาสตร์"> ม.4 วิทย์ฯ-คณิตฯ</a>
-        <a class="btn btn-default" href="index.php?le=4&op=วิทยาศาสตร์-คอมพิวเตอร์"> ม.4 วิทย์ฯ-คอมฯ</a>
-        <a class="btn btn-default" href="index.php?le=4&op=อังกฤษ-จีน"> ม.4 อังกฤษ-จีน</a>
-        <a class="btn btn-default" href="index.php?le=4&op=อังกฤษ-ญี่ปุ่น"> ม.4 อังกฤษ-ญี่ปุ่น</a>
-        <a class="btn btn-default" href="index.php?le=4&op=อังกฤษ-เวียดนาม"> ม.4 อังกฤษ-เวียดนาม</a>
-        <a class="btn btn-default" href="index.php?le=4&op=อังกฤษ-เกาหลี"> ม.4 อังกฤษ-เกาหลี</a>
-        <a class="btn btn-default" href="index.php?le=4&op=ไทย-สังคม"> ม.4 ไทย-สังคม</a>
-        <a class="btn btn-default" href="index.php?le=4&op=ส่งเอกสารแล้ว"> ม.4 ส่งเอกสารแล้ว</a>
 <br><br>
-        <a class="btn btn-primary" href="exam.php?le=1&op=นักเรียนในเขตพื้นที่บริการ&sh=yes">ผังสอบ ม.1 ในเขตฯ</a>
-        <a class="btn btn-primary" href="exam.php?le=1&op=นักเรียนทั่วไป&sh=yes">ผังสอบ ม.1 นอกเขตฯ</a>
-        <a class="btn btn-primary" href="exam.php?le=4&op=นักเรียนทั่วไป&sh=yes">ผังสอบ ม.4 ทั้งหมด</a>
+        <!-- <a class="btn btn-primary" href="exam.php?le=1&op=นักเรียนในเขตพื้นที่บริการ&sh=yes">ผังสอบ ม.1 ในเขต</a>
+        <a class="btn btn-primary" href="exam.php?le=1&op=นักเรียนทั่วไป&sh=yes">ผังสอบ ม.1 ทั่วไป</a>
+        <a class="btn btn-primary" href="exam.php?le=4&op=นักเรียนทั่วไป&sh=yes">ผังสอบ ม.4 ทั้งหมด</a> -->
    
 </td>
 </tr>
@@ -211,325 +208,23 @@ body {
 
     // Design initial table header 
 
-      //================= tbl_images====================
-
-     
-      ?>
-
-      <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>ลำดับ</th>
-                        <th>เลขประจำตัวประชาชน</th>
-                        <th>ชื่อ - สกุล</th>
-                        <th>วันเวลาที่สมัคร</th>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    <?php 
-                                 
-                  
-                    $sql_img = "SELECT * FROM tbl_images "; 
-                    $query_img = mysql_query($sql_img) or die ("Error Query");                   
-                    $count = mysql_num_rows($query_img);
-
-                    if($count>0)
-                    {
-                    
-                    
-                    $i=1; while ($result_img = mysql_fetch_assoc($query_img)) { ?>
-                        <tr>
-                            <td><?php echo $i;?></td>
-                            <td style="width: 20px"><?php echo $result_img['NID'];?></td>
-                            <td><?php echo $result_img['NID'];?></td>
-                            <td><?php echo $result_img['doc'];?></td>
-        
-                        </tr>
-                        <?php $i++;
-                    }
-
-                }
-
-                
-                ?>
-                </tbody>
-            </table> 
-        </div>
-        <?php
-
-
-
-
-    //===============================================
-
-
-
 
     $data = '<table class="table table-bordered table-striped">
                         <tr>
                             <th><h4>No.</h4></th>
-                            <th><h4>เลขบัตร</h4></th>
+                            <th><h4>เลขบัตรฯ</h4></th>
                             <th><h4>ชื่อ - สกุล</h4></th>
                             <th><h4>ระดับชั้น</h4></th>
                             <th><h4>ประเภทนักเรียน</h4></th>
-                            <th><h4>แผนการเรียน</h4></th>                            
-                            <th><h4>เอกสาร</h4></th>
-                            <th><h4>สถานะการยืนยัน</h4></th>        
+                            <th><h4>แผนการเรียน</h4></th>
+                            <th><h4>วันที่ยืนยัน</h4></th>
+                            <th><h4>สถานะการยืนยัน</h4></th>
+        
                             <th><h4>ออกเลขที่นั่งสอบ</h4></th>
                         </tr>';
-if(isset($_SESSION["cat"],$_SESSION["Search"]) && $_SESSION["Search"] != "") {
-        if(strcmp($_SESSION["cat"], "RegisStatus") == 0){
-                $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.".$_SESSION["cat"]." = '".$_SESSION["Search"]."' 
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "TYPESuccess") == 0) {
-                $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.RegisStatus = '1' and sd.TYPE = '".$_SESSION["Search"]."'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "TYPE21") == 0) {
-                $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.RegisStatus = '1' and sd.DAYCOME = '21'  and sd.TYPE = '".$_SESSION["Search"]."'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "TYPE22") == 0) {
-                $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.RegisStatus = '1' and sr.Daypush = '22'  and sd.TYPE = '".$_SESSION["Search"]."'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "TYPE23") == 0) {
-                $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.RegisStatus = '1' and sr.Daypush = '23'  and sd.TYPE = '".$_SESSION["Search"]."'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "TYPE24") == 0) {
-            $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-            FROM sas_register as sr
-            INNER JOIN sas_studentdata as sd
-            ON sr.RegisNaID = sd.NID
-            WHERE sr.RegisStatus = '1' and sr.Daypush = '24'  and sd.TYPE = '".$_SESSION["Search"]."'
-            ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "TYPE25") == 0) {
-                $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.RegisStatus = '1' and sr.Daypush = '25'  and sd.TYPE = '".$_SESSION["Search"]."'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "DAYCOME") == 0) {
-                $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sd.DAYCOME = '".$_SESSION["Search"]."'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
 
-        else{
-            if(strcmp($_SESSION["cat"], "OPTIONS") == 0 || strcmp($_SESSION["cat"], "TYPE") == 0){
-                    $category = "sd.".$_SESSION["cat"];
-            }else{
-                    $category = "sr.".$_SESSION["cat"];
-                }
-                $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE ".$category." like '%".$_SESSION["Search"]."%' 
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-             }
-}
- elseif(isset($_SESSION["cat"],$_SESSION["Search"]) && $_SESSION["Search"] == "") {
-            if (strcmp($_SESSION["cat"], "TYPE21") == 0) {
-                $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.RegisStatus = '1' and sd.DAYCOME = '21'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "TYPE22") == 0) {
-               $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.RegisStatus = '1' and sr.Daypush = '22'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "TYPE23") == 0) {
-               $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.RegisStatus = '1' and sr.Daypush = '23'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-        elseif (strcmp($_SESSION["cat"], "TYPE24") == 0) {
-            $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-             FROM sas_register as sr
-             INNER JOIN sas_studentdata as sd
-             ON sr.RegisNaID = sd.NID
-             WHERE sr.RegisStatus = '1' and sr.Daypush = '24'
-             ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-     }
-        elseif (strcmp($_SESSION["cat"], "TYPE25") == 0) {
-               $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sr.RegisStatus = '1' and sr.Daypush = '25'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-        }
-}
+      include "query_data.php";
 
-//ม.1
-
-elseif(isset($_GET["le"]) && strcmp($_GET["le"], "1") == 0 && strcmp($_GET["op"], "นักเรียนในเขตพื้นที่บริการ") == 0){
-            $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sd.TYPE = '1' and sd.OPTIONS = 'นักเรียนในเขตพื้นที่บริการ'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}elseif(isset($_GET["le"]) && strcmp($_GET["le"], "1") == 0 && strcmp($_GET["op"], "นักเรียนนอกเขตพื้นที่บริการ") == 0){
-
-            $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                FROM sas_register as sr
-                INNER JOIN sas_studentdata as sd
-                ON sr.RegisNaID = sd.NID
-                WHERE sd.TYPE = '1' and sd.OPTIONS = 'นักเรียนนอกเขตพื้นที่บริการ'
-                ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}elseif(isset($_GET["le"]) && strcmp($_GET["le"], "1") == 0 && strcmp($_GET["op"], "ส่งเอกสารแล้ว") == 0){
-
-    $query = "SELECT   RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, 
-    sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME,
-    img.doc,COUNT(*)
-
-FROM sas_register as sr
-INNER JOIN sas_studentdata as sd
-ON sr.RegisNaID = sd.NID
-RIGHT JOIN tbl_images as img
-ON sd.NID = img.NID
-WHERE sd.TYPE = '1' 
-GROUP BY img.NID ORDER BY sr.RegisID DESC" ;
-}
-
-elseif(isset($_GET["le"]) && strcmp($_GET["le"], "1")== 0 ){
-
-    $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-        FROM sas_register as sr
-        INNER JOIN sas_studentdata as sd
-        ON sr.RegisNaID = sd.NID
-        WHERE sd.TYPE = '1'
-        ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}
-
-// ม.4
-
-elseif(isset($_GET["le"]) && strcmp($_GET["le"], "4") == 0 && strcmp($_GET["op"], "วิทยาศาสตร์-คณิตศาสตร์") == 0){
-
-    $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-        FROM sas_register as sr
-        INNER JOIN sas_studentdata as sd
-        ON sr.RegisNaID = sd.NID
-        WHERE sd.TYPE = '4' and sd.PLAN1 = 'วิทยาศาสตร์-คณิตศาสตร์'
-        ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}elseif(isset($_GET["le"]) && strcmp($_GET["le"], "4") == 0 && strcmp($_GET["op"], "วิทยาศาสตร์-คอมพิวเตอร์") == 0){
-
-    $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-        FROM sas_register as sr
-        INNER JOIN sas_studentdata as sd
-        ON sr.RegisNaID = sd.NID
-        WHERE sd.TYPE = '4' and sd.PLAN1 = 'วิทยาศาสตร์-คอมพิวเตอร์'
-        ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}elseif(isset($_GET["le"]) && strcmp($_GET["le"], "4") == 0 && strcmp($_GET["op"], "อังกฤษ-จีน") == 0){
-
-    $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-        FROM sas_register as sr
-        INNER JOIN sas_studentdata as sd
-        ON sr.RegisNaID = sd.NID
-        WHERE sd.TYPE = '4' and sd.PLAN1 = 'อังกฤษ-จีน'
-        ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}elseif(isset($_GET["le"]) && strcmp($_GET["le"], "4") == 0 && strcmp($_GET["op"], "อังกฤษ-ญี่ปุ่น") == 0){
-
-    $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-        FROM sas_register as sr
-        INNER JOIN sas_studentdata as sd
-        ON sr.RegisNaID = sd.NID
-        WHERE sd.TYPE = '4' and sd.PLAN1 = 'อังกฤษ-ญี่ปุ่น'
-        ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}elseif(isset($_GET["le"]) && strcmp($_GET["le"], "4") == 0 && strcmp($_GET["op"], "อังกฤษ-เวียดนาม") == 0){
-
-    $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-        FROM sas_register as sr
-        INNER JOIN sas_studentdata as sd
-        ON sr.RegisNaID = sd.NID
-        WHERE sd.TYPE = '4' and sd.PLAN1 = 'อังกฤษ-เวียดนาม'
-        ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}elseif(isset($_GET["le"]) && strcmp($_GET["le"], "4") == 0 && strcmp($_GET["op"], "อังกฤษ-เกาหลี") == 0){
-
-    $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-        FROM sas_register as sr
-        INNER JOIN sas_studentdata as sd
-        ON sr.RegisNaID = sd.NID
-        WHERE sd.TYPE = '4' and sd.PLAN1 = 'อังกฤษ-เกาหลี'
-        ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}elseif(isset($_GET["le"]) && strcmp($_GET["le"], "4") == 0 && strcmp($_GET["op"], "ไทย-สังคม") == 0){
-
-    $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-        FROM sas_register as sr
-        INNER JOIN sas_studentdata as sd
-        ON sr.RegisNaID = sd.NID
-        WHERE sd.TYPE = '4' and sd.PLAN1 = 'ไทย-สังคม'
-        ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}elseif(isset($_GET["le"]) && strcmp($_GET["le"], "4") == 0 ){
-
-    $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-        FROM sas_register as sr
-        INNER JOIN sas_studentdata as sd
-        ON sr.RegisNaID = sd.NID
-        WHERE sd.TYPE = '4'
-        ORDER BY sr.RegisID DESC "; // คำสั่งค้นหา
-
-}
-//ทุกระดับ
-else{
-                 $query = "SELECT RegisID, RegisNO, RegisPWD, RegisLLog, RegisNaID, RegisStatus, Daypush, sd.NID, sd.TYPE, sd.OPTIONS, sd.PLAN1, sd.SNAME, sd.FNAME, sd.LNAME, sd.DAYCOME
-                 FROM sas_register as sr
-                 INNER JOIN sas_studentdata as sd
-                 ON sr.RegisNaID = sd.NID                
-                 ORDER BY sr.RegisID DESC "; ;
-}                   
     //$query = "SELECT * FROM sas_register";
    // $result = mysql_query($query);
     if (!$result = mysql_query($query)) {
@@ -567,28 +262,29 @@ else{
                     $abcde  = '<a class="btn btn-warning" href="exam.php?nid='.$row['RegisNaID'].'&fname='.$row['FNAME'].'&lname='.$row['LNAME'].'&op='.$row['OPTIONS'].'&le='.$row['TYPE'].'">ออกเลขที่นั่ง</a>';
 
                     }
+
+                if($row['RegisStatus']==1){
+                   $statusDisabled =' <span class="text-success">ยืนยัน<span>';
+                   
+
+                }else{
                     
-                    $option = $row['OPTIONS'];
-                    if($option==""){
-                        $option = "นักเรียนทั่วไป";
+                    $statusDisabled =' <button onclick="ConfirmUser('.$row['RegisID'].')" class="btn btn-success">ยืนยัน</button>';
 
-                    }else{
-                        $option = $option;
-                    }
-                    ////////////////////////////////echo "".$option;
-
-                $sql_img = "SELECT * FROM tbl_images WHERE NID = '".$row['RegisNaID']."' ORDER BY doc ASC";
-
-                if($query_img = mysql_query($sql_img)){
-                    $doc ="";
-
-                    while($row_img = mysql_fetch_assoc($query_img)){
-                        //echo $row_img['doc'];
-                        $doc.=$row_img['doc'].'<br/>';
-
-                    }
-
+                    // <button onclick="UnconfirmUser('.$row['RegisID'].')" class="btn btn-danger">ยกเลิก</button>'
                 }
+                $dateCf = $row['RegisConfirm'];
+                $year = substr($dateCf, 0, 4)+543;
+                $month = substr($dateCf, 8, 2);
+                $day = substr($dateCf, 8, 2);
+                $time = substr($dateCf, 10, 6);
+
+                if($day==00){
+                    $date = '';
+                }else{
+                    $date = $day.'/'.$month.'/'.$year.' : '.$time.' น.';
+                }
+                
 
                  $data .= '<tr>
                 <td>'.$number.'</td>
@@ -596,11 +292,11 @@ else{
                 <td>'.$row['FNAME'].' '.$row['LNAME'].'</td>
                  <td> ม.'.$row['TYPE'].'</td>
                 <td>'.$row['OPTIONS'].'</td>
-                <td>'.$row['PLAN1'].'</td>                
-                <td>'.$doc.'</td>
-                <td>'.$row['RegisStatus'].'
-                <button onclick="ConfirmUser('.$row['RegisID'].')" class="btn btn-success">ยืนยัน</button>
-                <button onclick="UnconfirmUser('.$row['RegisID'].')" class="btn btn-danger">ยกเลิก</button>
+                <td>'.$row['PLAN1'].'</td>
+                <td>'.$date.' </td>
+                <td>'.$row['RegisStatus'].$statusDisabled.'
+                
+
                 </td>
                 <td>
                 '.$abcde.'
@@ -722,8 +418,7 @@ else{
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <p>
-                                ระบบรับสมัครนักเรียนโรงเรียนธาตุนารายณ์วิทยา </br>
-                                Copyright © ICT Banglamung School
+                                Copyright © งานพัฒนาระบบเทคโนโลยีสารสนเทศ โรงเรียนบางละมุง
                             </p>
                         </div>
                     </div>
@@ -751,7 +446,8 @@ else{
     ga('send', 'pageview');
 
 </script-->
-<?php }} ?>
+<?php }
+} ?>
 </body>
 </html>
 <?php ?>

@@ -14,10 +14,11 @@ include("db_connection.php");
    // $mount = "มีนาคม"
     //$day =  date("d")." ".$mount;
     $day =  date("d");
-    $query = "UPDATE sas_register SET RegisStatus = 1, 	Daypush = '".$day."' WHERE  RegisID = '$id'";
+    $query = "UPDATE sas_register SET RegisConfirm = NOW(), RegisStatus = 1, 	Daypush = '".$day."' WHERE  RegisID = '$id'";
     if (!$result = mysql_query($query)) {
         exit(mysql_error());
     }
 }
+
 
 ?>

@@ -1,19 +1,11 @@
 <?php
-/*$host = "localhost"; // ส่วนมากมักเป็น localhost
-$user = "root"; // Username
-$pass = "1234"; // Password
-$dbname = "student"; // ชื่อฐานข้อมูล*/
+
 
 $host = "localhost"; // ส่วนมากมักเป็น localhost
-$dbname = "admission_web"; // ชื่อฐานข้อมูล
 $user = "admission_web"; // Username
 $pass = "MldwSCiq"; // Password
+$dbname = "admission_web"; // ชื่อฐานข้อมูล
 
-
-/*$host = "127.0.0.1:3306"; // ส่วนมากมักเป็น localhost
-$user = "kittisak"; // Username
-$pass = "076200207"; // Password
-$dbname = "student";  // ชื่อฐานข้อมูล */
 
 function conndb()
 {

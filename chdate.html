@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row"> 
             <div class="col-md-12 text-center">
-               <h2> ตรวจสอบ ข้อมูลนักเรียน ตามวันที่เข้าอยู่ในทะเบียนบ้าน</h2> <br>
+               <h2> ตรวจสอบ ข้อมูลนักเรียน ตามวันที่เข้าอยู่ในทะเบียนบ้านในเขตพื้นที่บริการ </br> ของโรงเรียนธาตุนารายณ์วิทยา 5 ตำบล ได้แก่ ธาตุเชิงชุม ธาตุนาเวง พังขว้าง ฮางโฮง เชียงเครือ</h2> <br>
             </div>
     </div>
     <div class="row"> 
@@ -34,17 +34,17 @@
         <div class="row"> 
             <div class=" col-md-12"><br><br><br>
                 <div class="alert alert-danger text-center" role="alert">
-                        <i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> เลือกวันเดือนปี ตามที่ระบุวันเข้าอยู่ในทะเบียนบ้าน ตัวอย่าง รูปแบบ 16/05/2560 แล้วกดปุ่ม <span class="glyphicon glyphicon-console" aria-hidden="true"></span> Enter</i>
+                        <i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> เลือกวันเดือนปี ตามที่ระบุวันเข้าอยู่ในทะเบียนบ้านในเขตพื้นที่บริการของโรงเรียนธาตุนารายณ์วิทยา ตัวอย่าง รูปแบบ 16/05/2561 แล้วกดปุ่ม  <span class="glyphicon glyphicon-console" aria-hidden="true"></span> Enter</i>
                     </div>
             </div>
         </div>
     <div class="row"> 
     <div class="form-group form-group-lg text-right">
-        <label class=" col-md-3 control-label" for="formGroupInputLarge"> วัน/เดือน/ปี ตามวันที่เข้าอยู่ในทะเบียนบ้าน : รูปแบบ 16/05/2560  </label>
+        <label class=" col-md-3 control-label" for="formGroupInputLarge"> วัน/เดือน/ปี ตามวันที่เข้าอยู่ในทะเบียนบ้าน : รูปแบบ 16/05/2561  </label>
         <div class="col-md-6 text-left">
                
-            <input class="form-control input-lg" type="text"  id="end" name="end" onChange="TimeDriff()"
-            data-provide="datepicker" data-date-language="th-th" value="01/01/2549"  
+            <input class="form-control input-lg datepicker" type="text"  id="end" name="end" onChange="TimeDriff()"
+            data-provide="datepicker" data-date-language="th-th" value="01/01/2550"  
             >        
         </div>
         <div class="col-md-3"> </div>
@@ -53,8 +53,6 @@
 
   </div>  
     </div>
-
-
 
     <script src="js/jquery.js"></script>
         
@@ -72,13 +70,21 @@
 <script src="js/sc.js"></script>
 
 <SCRIPT language="javascript">
+
+        $(document).ready(function(){
+            $(".datepicker").datepicker().on('show', function(e){
+            $('.prev').text('<<<');
+                $('.next').text(">>>");
+            });
+        });
+        
         function TimeDriff()
         {
             var diff;
             var start = new Array(3);
             var end = new Array(3);
             /*var st = document.getElementById('start').value;*/
-            var st = '16/05/2560';
+            var st = '15/05/2561';
             var en = document.getElementById('end').value;
         
             //Thai DateFormat 15/08/2552 - DD/MM/YYYY

@@ -160,7 +160,7 @@ $pdf->Text(159,264.5, iconv( 'UTF-8','TIS-620', $_SESSION["EDITE"][7]));
 
 
 $a= $_SESSION["EDITE"][0].".pdf";
-$pdf_file = "Banglamung-".$a;
+$pdf_file = "Thatnaraiwittay-".$a;
 
 $pdf->Output("fpdf/MyPDF/".$pdf_file,"F");
 //$pdf->Output("MyPDF/MyPDF.pdf","F");  */

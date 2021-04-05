@@ -273,7 +273,7 @@ $pdf->Text(39,236, iconv( 'UTF-8','TIS-620',$row["SNAME"]." ".$row["FNAME"]."  "
 
 
 $a= $row["RegisNaID"].".pdf";
-$pdf_file = "BlmWelcome-".$a;
+$pdf_file = "TNWWelcome-".$a;
 
 $pdf->Output("../../fpdf/MyPDF/".$pdf_file,"F");
 //$pdf->Output("MyPDF/MyPDF.pdf","F");  */

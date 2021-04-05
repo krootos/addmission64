@@ -2,87 +2,80 @@
 //echo $_SESSION["NaID"];
 function insertregister($data)
 {
+        $sql = "INSERT INTO sas_register";
+        $sql .= "(RegisNO, RegisPWD, RegisNaID)";
+        $sql .= "VALUES ";
+        $sql .= "('" . $data[0] . "','" . $data[1] . "','" . $data[0] . "')";
 
-    //Query ???????? 1
-    /*$sql_select = "SELECT * from sas_register";
-    $a          = mysql_query($sql_select);
-    $rowsold    = mysql_num_rows($a);*/
+        $result_register = mysqli_query($sql);
 
-//Query ???????? 2
-    $sql = "INSERT INTO sas_register";
-    $sql .= "(RegisNO, RegisPWD, RegisNaID)";
-    $sql .= "VALUES ";
-    $sql .= "('" . $data[0] . "','" . $data[1] . "','" . $data[2] . "')";
+        // if ($rowsnew > $rowsold) {
+        if ($result_register) {
+            $sql_selectnew = "SELECT * from sas_register WHERE RegisNaID = '" . $data[2] . "'";
+            $anew = mysqli_query($mysqli,$sql_selectnew);
+            if ($anew) {
+                $user = mysqli_fetch_array($anew);
+                $_SESSION["SUCCESS_REGISTER"] = 1; //สร้างตัวแปรเพื่เช็คว่ามีการ ลงทะเบียนข้อมูลไว้หรือยัง
+                $_SESSION["REGISNO"] = $user["RegisNO"];
+                $_SESSION["REGISPWD"] = $user["RegisPWD"];
+                $_SESSION["REGISNAID"] = $user["RegisNaID"];
+            }
+    ?>
+<div class="alert alert-success text-center" role="alert">
+    <p style="font-size: 20px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ลงทะเบียนเรียบร้อยแล้ว
+    </p>
+    <p style="font-size: 20px;"><a href="index.php?regisdone=done">คลิกเข้าสู่ระบบผู้สมัครสอบ
+        </a></p>
+</div>
 
-    $result_register = mysql_query($sql);
-    // echo mysql_affected_rows();
-    // ถ้า insert ล้มเหลวจะได้ เท่ากับ - 1
-    //  ถ้า insert ผ่านจะได้ เท่ากับ 1
-    //Query ???????? 3
-    /* $sql_selectnew = "SELECT * from sas_register";
-    $anew          = mysql_query($sql_selectnew);
-    $rowsnew       = mysql_num_rows($anew);*/
-
-    // if ($rowsnew > $rowsold) {
-    if ($result_register) {
-        $sql_selectnew = "SELECT * from sas_register WHERE RegisNaID = '" . $data[2] . "'";
-        $anew = mysql_query($sql_selectnew);
-        if ($anew) {
-            $user = mysql_fetch_array($anew);
-            $_SESSION["SUCCESS_REGISTER"] = 1; //สร้างตัวแปรเพื่เช็คว่ามีการ ลงทะเบียนข้อมูลไว้หรือยัง
-            $_SESSION["REGISNO"] = $user["RegisNO"];
-            $_SESSION["REGISPWD"] = $user["RegisPWD"];
-            $_SESSION["REGISNAID"] = $user["RegisNaID"];
-        }
-
-        ?>
-    	<div class="alert alert-success text-center" role="alert">
-    	<p style="font-size: 20px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ลงทะเบียนเรียบร้อยแล้ว
-    	</p>
-    	<p style="font-size: 20px;"><a href="index.php?regisdone=done">คลิกเข้าสู่ระบบผู้สมัครสอบ
-    	</a></p>
-        </div>
-         <div class="caption-full">
-        <div class="table-responsive">
-        <h3 style="color: #c7254e;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> ข้อมูลการลงทะเบียน</h3>
+<div class="caption-full">
+    <div class="table-responsive">
+        <h3 style="color: #c7254e;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+            ข้อมูลการลงทะเบียน</h3>
         <!--p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p-->
-         <table class="table table-hover">
-         <thead>
-            <tr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
 
-                <th>รหัสเข้าใช้งาน</th>
-                <th>รหัสผ่าน</th>
-                <th>รหัสบัตรประจำตัวประชาชน</th>
+                    <th>รหัสเข้าใช้งาน</th>
+                    <th>รหัสผ่าน</th>
+                    <th>รหัสบัตรประจำตัวประชาชน</th>
 
-                <th>เปลี่ยนแปลงข้อมูลรหัสผ่าน</th>
+                    <th>เปลี่ยนแปลงข้อมูลรหัสผ่าน</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
 
-                <td><?php echo "$data[0]"; ?></td>
-                <td><?php echo "$data[1]"; ?></td>
-                <td><?php echo "$data[2]"; ?></td>
+                    <td><?php echo "$data[0]"; ?></td>
+                    <td><?php echo "$data[1]"; ?></td>
+                    <td><?php echo "$data[0]"; ?></td>
 
-                <td><?php echo "<a href=\"\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> เปลี่ยนแปลงข้อมูลติดต่อผู้ดูแลระบบ</a>"; ?>
-                </td>
+                    <td><?php echo "<a href=\"\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> เปลี่ยนแปลงข้อมูลติดต่อผู้ดูแลระบบ</a>"; ?>
+                    </td>
 
-            </tr>
-        </tbody>
-         </table>
-        </div>
-        </div>
-<?php
-} else {?>
-		<div class="alert alert-danger text-center" role="alert">
-		<i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ล้มเหลว ข้อมูลนี้ได้ลงทะเบียนไว้แล้ว
-		</i>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
 
-	<?php }
-//mysql_close($connected);
-}?>
+<?php
+    } 
+    else {?>
+
+<div class="alert alert-danger text-center" role="alert">
+    <i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ล้มเหลว
+        ข้อมูลนี้ได้ลงทะเบียนไว้แล้ว
+    </i>
+</div>
+
+<?php 
+    }
+    //mysql_close($connected);
+}
+?>
 
 <?php
 if (isset($_SESSION["NaID"])) {$nid = $_SESSION["NaID"];}
@@ -160,15 +153,15 @@ function insertstudentdata($data1, $data2, $data3, $data4, $data5, $data6, $data
         ///////////////
         selectfirst($nid); // เรียกใช้ Function    selectfirst($nid);
         ?>
-        <!--  -->
+<!--  -->
 <?php
 } else {?>
-        <div class="alert alert-danger text-center" role="alert">
-        <i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ล้มเหลว กรุณาติดต่อผู้ดูแล Tel 0805580193
-        </i>
-         </div>
+<div class="alert alert-danger text-center" role="alert">
+    <i><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> ล้มเหลว โปรดลองเข้าระบบใหม่อีกครั้ง
+    </i>
+</div>
 
-    <?php }
+<?php }
 //mysql_close();
 }?>
 
@@ -185,7 +178,11 @@ function selectfirst($nid)
                 ON a.ExamID = b.id
                 WHERE a.ExamNID = '" . $nid . "'";
     $sql_user = "SELECT * FROM sas_register WHERE RegisNaID = '" . $nid . "'";
-    $sql_studata = "SELECT NID, TYPE, OPTIONS, OPTIONSPECIAL, MORE, PLAN1, PLAN2, PLAN3, PLAN4, PLAN5, SNAME, FNAME, LNAME, BIRTHDAY, SEX, RELI, REGINAL, REGINALITY, GROUPBLOOD, HADDRESS, MOO, SOI, ROAD,  sd.PROVINCE_ID, sd.DISTRICT_ID, sd.AMPHUR_ID, TEL, EMAIL, GRADUATE, LSCHOOL, GPA, SNAMEFA, FNAMEFA,  LNAMEFA, TELFA, SNAMEMA, FNAMEMA, LNAMEMA, TELMA, FAMILYSTATUS, dt.DISTRICT_NAME , ap.POSTCODE, ap.AMPHUR_NAME, pv.PROVINCE_NAME, CREATEDATE, DAYCOME, ID_PROVINCE_SC, OC_FA, OC_MA, TYPEPARENT, SNAMEPA, FNAMEPA, LNAMEPA, TELPA, OC_PA, RELATION, schoolsecond, stuIDold
+    $sql_studata = "SELECT NID, TYPE, OPTIONS, OPTIONSPECIAL, MORE, PLAN1, PLAN2, PLAN3, PLAN4, PLAN5, SNAME, FNAME, LNAME, 
+                    BIRTHDAY, SEX, RELI, REGINAL, REGINALITY, GROUPBLOOD, 
+                    HADDRESS, MOO, SOI, ROAD,  sd.PROVINCE_ID, sd.DISTRICT_ID, sd.AMPHUR_ID, 
+                    TEL, EMAIL, GRADUATE, LSCHOOL, GPA, SNAMEFA, FNAMEFA,  LNAMEFA, TELFA, SNAMEMA, FNAMEMA, LNAMEMA, TELMA, FAMILYSTATUS, 
+                    dt.DISTRICT_NAME , ap.POSTCODE, ap.AMPHUR_NAME, pv.PROVINCE_NAME, CREATEDATE, DAYCOME, ID_PROVINCE_SC, OC_FA, OC_MA, TYPEPARENT, SNAMEPA, FNAMEPA, LNAMEPA, TELPA, OC_PA, RELATION, schoolsecond, stuIDold
                 FROM sas_studentdata as sd
                 INNER JOIN district as dt
                 ON sd.DISTRICT_ID = dt.DISTRICT_ID
@@ -194,29 +191,31 @@ function selectfirst($nid)
                 INNER JOIN province as pv
                 ON ap. PROVINCE_ID = pv. PROVINCE_ID
                 WHERE sd.NID = '" . $nid . "'";
-    $resultaz = mysql_query($sql_ex);
-    $resultstu = mysql_query($sql_studata);
-    $resultuser = mysql_query($sql_user);
+    $resultaz = mysqli_query($mysqli,$sql_ex);
+    $resultstu = mysqli_query($mysqli,$sql_studata);
+    $resultuser = mysqli_query($mysqli,$sql_user);
     //$rows       = mysql_num_rows($resultstu);
 
-    if (mysql_num_rows($resultaz) > 0) {
-        $ex = mysql_fetch_assoc($resultaz);
+    if (mysqli_num_rows($resultaz) > 0) {
+        $ex = mysqli_fetch_assoc($resultaz);
         $_SESSION["EX"][1] = $ex["ExamStuNo"];
         $_SESSION["EX"][2] = $ex["ExamID"];
         $_SESSION["EX"][3] = $ex["ExamBuilding"];
         $_SESSION["EX"][4] = $ex["ExamRoomNO"];
     }
 
-    if (mysql_num_rows($resultuser) > 0) {
-        $stuuser = mysql_fetch_array($resultuser);
+    if (mysqli_num_rows($resultuser) > 0) {
+        $stuuser = mysqli_fetch_array($resultuser);
         $_SESSION["CODE"] = $stuuser["RegisNO"];
+        $_SESSION["ROLE"] = $stuuser["Role"];
     }
-    if (mysql_num_rows($resultstu) > 0) {
+    if (mysqli_num_rows($resultstu) > 0) {
         // do while loop
-        $studata = mysql_fetch_array($resultstu);
+        $studata = mysqli_fetch_array($resultstu);
         //$rows    = mysql_fetch_row($resultstu);
         //echo $rows[1];
-        echo $_SESSION["EDITE"][0] = $studata["NID"];
+        echo ""; //BBBBBBBBBuuuuuuuuuuuuuuuuuuuugggggggggggggggggggggggggg
+        $_SESSION["EDITE"][0] = $studata["NID"]; 
         $_SESSION["EDITE"][1] = $studata["TYPE"];
         $_SESSION["EDITE"][2] = $studata["OPTIONS"];
 
@@ -291,158 +290,413 @@ function selectfirst($nid)
         include "create_pdf.php";
 
         ?>
-        <div class="caption-full">
-        <div class="table-responsive">
-        <h3 style="color: #c7254e;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> ข้อมูลการสมัครเรียน</h3>
+
+
+<div class="caption-full">
+
+<h3 style="color: #3b2b7e;"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+    อัพโหลดเอกสารเพื่อตรวจสอบคุณสมบัติ <br/>(ขนาดรูปภาพที่ใช้อัพโหลดไม่เกิน 1 MB)
+</h3>
+<i style="color: #ff0000;"> ** แนบไฟล์ภาพเอกสารต่อไปนี้ประกอบการสมัคร สำหรับให้เจ้าหน้าที่ตรวจสอบคุณสมบัติ **</i>
+<i style="color: #56004f;"> <(ใช้ภาพที่ถ่ายด้วยโทรศัพท์มือถือได้)</i><br/>
+<i style="color: #ff0000;"> 1. ใบรับรองการจบการศึกษา  </i><br/>
+<i style="color: #56004f;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1 ใบ ปพ.1 ด้านหน้า </i><br>
+<i style="color: #56004f;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2 ใบ ปพ.1 ด้านหลัง </i><br>
+<i style="color: #ff0000;"> 2. สำเนาทะเบียนบ้าน </i><br>
+<br>
+
+<div class="table-responsive">
+
+    <div>
+        <br/>        
+        <div align="left">
+            <button type="button" name="add" id="add" class="btn btn-success glyphicon glyphicon-cloud-upload"> เพิ่มเอกสาร </button>
+        </div>
+        <br />
+        <div id="image_data">
+
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">เพิ่มรูปภาพเอกสาร</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="image_form" method="post" enctype="multipart/form-data">
+                        <p>
+                        
+                            <input type="hidden" size="25" name="txtID" id="ID" 
+                                OnKeyPress="return chkNumber(this)" required="" maxlength="13" value='<?php echo"".$studata["NID"]?>' /></p>
+                        <label>เลือกภาพเอกสารที่ต้องการแนบ : </label>                            
+                    
+                        <input type="file" name="image" id="image" /></p>
+                        <label>เลือกประเภทเอกสาร: (อัพโหลดให้ครบทั้ง 3 ชนิด) </label><br/>
+                        
+                        <input type="radio" required size="7px" name="txtDoc"  id="ID" 
+                                value="ปพ.1 ด้านหน้า" required />  <label for="male">ปพ.1 ด้านหน้า</label>
+                        <input type="radio"  size="7px" name="txtDoc"  id="ID" 
+                                value="ปพ.1 ด้านหลัง" required/>  <label for="male">ปพ.1 ด้านหลัง</label>
+                        <input type="radio"  size="7px" name="txtDoc"  id="ID" 
+                                value="ทะเบียนบ้าน" required />  <label for="male">ทะเบียนบ้าน</label>
+                        <input type="hidden" name="action" id="action" value="insert" />
+                        <input type="hidden" name="image_id" id="image_id" />
+                        <!-- <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-info" /> -->
+                        <br/><br/>
+                        <button type="submit" name="insert" id="insert" value="insert"
+                            class="btn btn-info">เพิ่มเอกสาร</button>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>  
+
+
+
+$(document).ready(function(){
+ 
+ fetch_data();
+
+ function fetch_data()
+ {
+  var action = "fetch";
+  $.ajax({
+   url:"action.php",
+   method:"POST",
+   data:{action:action},
+   success:function(data)
+   {
+    $('#image_data').html(data);
+   }
+  })
+ }
+ $('#add').click(function(){
+  $('#imageModal').modal('show');
+  $('#image_form')[0].reset();
+  $('.modal-title').text("เพิ่มรูปภาพเอกสารสำหรับตรวจสอบคุณสมบัติ");
+  $('#image_id').val('');
+  $('#action').val('insert');
+  $('#insert').val("Insert");
+ });
+ $('#image_form').submit(function(event){
+  event.preventDefault();
+  var image_name = $('#image').val();
+  if(image_name == '')
+  {
+   alert("กรุณาเลือกรูปภาพ");
+   return false;
+  }
+  else
+  {
+   var extension = $('#image').val().split('.').pop().toLowerCase();
+   if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
+   {
+    alert("โปรดเลือกไฟล์ที่เป็นรูปภาพ .jpg หรือ .png เท่านั้น");
+    $('#image').val('');
+    return false;
+   }
+   else
+   {
+    $.ajax({
+     url:"action.php",
+     method:"POST",
+     data:new FormData(this),
+     contentType:false,
+     processData:false,
+     success:function(data)
+     {
+      alert(data);
+      fetch_data();
+      $('#image_form')[0].reset();
+      $('#imageModal').modal('hide');
+     }
+    });
+   }
+  }
+ });
+ $(document).on('click', '.update', function(){
+  $('#image_id').val($(this).attr("id"));
+  $('#action').val("update");
+  $('.modal-title').text("Update Image");
+  $('#insert').val("Update");
+  $('#imageModal').modal("show");
+ });
+ $(document).on('click', '.delete', function(){
+  var image_id = $(this).attr("id");
+  var action = "delete";
+  if(confirm("คุณแน่ใจหรือไม่ที่จะลบรูปภาพนี้?"))
+  {
+   $.ajax({
+    url:"action.php",
+    method:"POST",
+    data:{image_id:image_id, action:action},
+    success:function(data)
+    {
+     alert(data);
+     fetch_data();
+    }
+   })
+  }
+  else
+  {
+   return false;
+  }
+ });
+});  
+</script>
+
+
+
+    <div class="table-responsive">
+        <h3 style="color: #c7254e;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+            ข้อมูลการสมัครเรียน</h3>
         <!--p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p-->
-         <table class="table table-hover">
-         <thead>
-            <tr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
 
-                <th>ระดับชั้นที่สมัคร</th>
-                <th>ชื่อ - นามสกุล</th>
-                <th>ประเภทนักเรียน</th>
-                <th>แผนการเรียน</th>
+                    <th>ระดับชั้นที่สมัคร</th>
+                    <th>ชื่อ - นามสกุล</th>
+                    <th>ประเภทนักเรียน</th>
+                    <th>แผนการเรียน</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
 
-                <td><?php echo "มัธยมศึกษาปีที่ " . $studata["TYPE"]; ?></td>
-                <td><?php echo $studata["SNAME"] . "" . $studata["FNAME"] . " " . $studata["LNAME"]; ?></td>
-                <td><?php echo $studata["OPTIONS"]; ?></td>
-                <td><?php echo $studata["PLAN1"]; ?></td>
+                    <td><?php echo "มัธยมศึกษาปีที่ " . $studata["TYPE"]; ?></td>
+                    <td><?php echo $studata["SNAME"] . "" . $studata["FNAME"] . " " . $studata["LNAME"]; ?></td>
+                    <td><?php 
+                        if($studata["OPTIONS"]==""){
+                            echo "นักเรียนทั่วไป";
 
+                        }else{
+                            echo $studata["OPTIONS"];
+                        }
+                         ?></td>
+                    <td><?php 
+                        if($studata["PLAN1"]==""){
+                            echo "ไม่มีแผนการเรียน";
 
-            </tr>
-        </tbody>
-         </table>
-
-     <table class="table table-hover">
-         <thead>
-            <tr>
-
-
-                <th>แก้ไขข้อมูล</th>
-                <th>พิมพ์ใบสมัคร</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-
-                <td><?php echo "<a href=\"?edite=true\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> แก้ไข</a>"; ?>
-                </td>
-
-                <td>
-                <a href="fpdf/MyPDF/<?php echo $pdf_file; ?>" target="_blank">
-                <span class="glyphicon glyphicon-print" aria-hidden="true"></span> พิมพ์ใบสมัคร</a>
-                <?php //echo "<a href=\"\"><span class=\"glyphicon glyphicon-print\" aria-hidden=\"true\"></span> พิมพ์ใบสมัคร</a>"; ?>
-                </td>
-
-            </tr>
-        </tbody>
-         </table>
+                        }else{
+                            echo $studata["PLAN1"];
+                        }
+                     ?></td>
 
 
-        </div>
-        </div>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="color: #0275d8;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            แก้ไขข้อมูล ตรวจสอบคุณสมบัติ และพิมพ์ใบสมัคร</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>แก้ไขข้อมูล</th>
+                    <th>การตรวจสอบคุณสมบัติ</th>
+                    <th>พิมพ์ใบสมัคร</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td><?php 
+                            if($stuuser["RegisStatus"]=="0"){
+                                echo "<a href=\"?edite=true\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span> แก้ไข</a>"; 
+
+                            }
+                            else{?>
+
+                        <span style='color:#188407'>ตรวจสอบคุณสมบัติผ่านแล้ว</span>
+
+
+                        <?php                                
+                            }
+                            
+                            
+                        ?>
+                    </td>
+
+                    <td><?php 
+                            if($stuuser["RegisStatus"]=="1"){//**ตรวจสอบคุณสมบัติ */ ?>
+
+                        <span style='color:#188407'>ตรวจสอบคุณสมบัติผ่านแล้ว</span>
+
+                        <?php
+                            }
+                            else{?>
+
+
+
+                        <span style='color:#188407'>รอตรวจสอบคุณสมบัติ</br>
+
+                        </span>
+                        <span style='color:#ff00a3'>**โปรดบันทึกข้อมูลการมอบตัวนักเรียน</span>
+
+
+                        <?php                                
+                            }
+                            
+                            
+                        ?>
+                    </td>
+
+                    <td>
+                        <?php 
+                            if($ex["ExamStuNo"]==""){
+                                echo "<span style='color:#ff0000'>รอการออกเลขประจำตัวผู้สมัครสอบ </span>";
+
+                            }
+                            else{?>
+                        <a href="fpdf/MyPDF/<?php echo $pdf_file; ?>" target="_blank">
+                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> พิมพ์ใบสมัคร
+                            <?php echo "เลขประจำตัว ".$ex["ExamStuNo"];?></a>
+
+
+                        <?php                                
+                            }
+                        ?>
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
 
 <!-- ส่วนของการมอบตัว-->
 <?php if (!isset($_GET["edite"])) {?>
 
 <div class="caption-full">
-        <div class="table-responsive">
-        <h3 style="color: #1b8220;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> ข้อมูลการมอบตัวนักเรียน</h3><i style="color: #ff0000;">**กรอกข้อมูลเพิ่มเติม ก่อนพิมพ์ใบมอบตัว (ส่วนนี้สำหรับกรอกข้อมูลเพิ่มเพื่อพิมพ์ใบมอบตัว)</i>
+    <div class="table-responsive">
+        <h3 style="color: #1b8220;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+            ข้อมูลการมอบตัวนักเรียน
+        </h3>
 
-    <?php $sql_other = "SELECT * FROM sas_other WHERE NID = '" . $nid . "'";
-            $resultother = mysql_query($sql_other);
-            //$rows       = mysql_num_rows($resultstu);
-            if (mysql_num_rows($resultother) > 0) {
-                $otdata = mysql_fetch_array($resultother);
+        <i style="color: #ff0000;">**กรอกข้อมูลเพิ่มเติม เพื่อใช้สำหรับพิมพ์ใบมอบตัว
+            (ส่วนนี้สำหรับกรอกข้อมูลเพิ่มเพื่อพิมพ์ใบมอบตัว)</i>
 
-                $h1 = substr($otdata["HID"], 0, 4);
-                $h2 = substr($otdata["HID"], 4, 6);
-                $h3 = substr($otdata["HID"], 10, 1);
-                $hid = $h1 . " - " . $h2 . " - " . $h3;
+        <?php 
+                        $sql_other = "SELECT * FROM sas_other WHERE NID = '" . $nid . "'";
+                        $resultother = mysql_query($sql_other);
+                        //$rows       = mysql_num_rows($resultstu);
+                        if (mysql_num_rows($resultother) > 0) {
+                        $otdata = mysql_fetch_array($resultother);
 
-                ?>
-         <table class="table table-hover">
-         <thead>
-            <tr>
+                        $h1 = substr($otdata["HID"], 0, 4);
+                        $h2 = substr($otdata["HID"], 4, 6);
+                        $h3 = substr($otdata["HID"], 10, 1);
+                        $hid = $h1 . " - " . $h2 . " - " . $h3;
 
-                <th>รหัสบ้าน</th>
-                <th>Name - Surname</th>
-                <th>Nickname</th>
-                <th>น้ำหนัก</th>
-                <th>ส่วนสูง</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
+                        ?>
+        <table class="table table-hover">
+            <thead>
+                <tr>
 
-                <td><?php echo $hid; ?></td>
-                <td><?php echo $otdata["ENAME"] . " " . $otdata["ESURNAME"]; ?></td>
-                <td><?php echo $otdata["ENICKNAME"]; ?></td>
-                <td><?php echo $otdata["WEIGHT"] . " กก."; ?></td>
-                <td><?php echo $otdata["HEIGHT"] . " ซม."; ?></td>
-            </tr>
-        </tbody>
-         </table>
+                    <th>รหัสบ้าน</th>
+                    <th>Name - Surname</th>
+                    <th>Nickname</th>
+                    <th>น้ำหนัก</th>
+                    <th>ส่วนสูง</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
 
-     <table class="table table-hover">
-         <thead>
-            <tr>
-                <th>แก้ไขข้อมูลเพิ่มเติม</th>
-                <th>พิมพ์ใบมอบตัว</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
+                    <td><?php echo $hid; ?></td>
+                    <td><?php echo $otdata["ENAME"] . " " . $otdata["ESURNAME"]; ?></td>
+                    <td><?php echo $otdata["ENICKNAME"]; ?></td>
+                    <td><?php echo $otdata["WEIGHT"] . " กก."; ?></td>
+                    <td><?php echo $otdata["HEIGHT"] . " ซม."; ?></td>
+                </tr>
+            </tbody>
+        </table>
 
-                <td>
-              <?php echo '<button onclick="GetUserDetails(' . $_SESSION["NaID"] . ')" class="btn btn-warning">แก้ไขข้อมูลเพิ่มเติม</button>'; ?>
-                </td>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>แก้ไขข้อมูลเพิ่มเติม</th>
+                    <th>พิมพ์ใบมอบตัว</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
 
-                <td>
-                <!--a href="fpdf/MyPDF/<?php //echo $pdf_file; ?>" target="_blank">
-                <span class="glyphicon glyphicon-print" aria-hidden="true"></span--> ส่วนพิมพ์ใบมอบตัวของเจ้าหน้าที่<!--/a-->
-                <?php //echo "<a href=\"\"><span class=\"glyphicon glyphicon-print\" aria-hidden=\"true\"></span> พิมพ์ใบสมัคร</a>"; ?>
-                </td>
+                    <td>
+                        <?php echo '<button onclick="GetUserDetails(' . $_SESSION["NaID"] . ')" class="btn btn-warning">แก้ไขข้อมูลเพิ่มเติม</button>'; ?>
+                    </td>
 
-            </tr>
-        </tbody>
-         </table>
+                    <td>
+                        <!--a href="fpdf/MyPDF/<?php //echo $pdf_file; ?>" target="_blank">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span-->
+                        ส่วนพิมพ์ใบมอบตัวของเจ้าหน้าที่
+                        <!--/a-->
+                        <?php //echo "<a href=\"\"><span class=\"glyphicon glyphicon-print\" aria-hidden=\"true\"></span> พิมพ์ใบสมัคร</a>"; ?>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
 
 
-        </div>
-        </div>
+    </div>
+</div>
+
 
 
 <?php } //end ของ if (mysql_num_rows($resultother) > 0) {
-            else { //ถ้าไม่มีข้อมูลเพิ่มเติม
-                ?>
-         <table class="table table-hover">
-         <thead>
-            <tr>
-                <th>เพิ่มข้อมูลเพิ่มเติม</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                 <?php echo '<button onclick="GetUserDetailsFa(' . $_SESSION["NaID"] . ')" class="btn btn-success">เพิ่มข้อมูลเพิ่มเติมเพื่อให้เจ้าหน้าที่พิมพ์ใบมอบตัว</button>'; ?>
+                    
+                            else { //ถ้าไม่มีข้อมูลเพิ่มเติม
+                                ?>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>เพิ่มข้อมูลเพิ่มเติม</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <?php echo '<button onclick="GetUserDetailsFa(' . $_SESSION["NaID"] . ')" class="btn btn-success">เพิ่มข้อมูลเพิ่มเติมเพื่อให้เจ้าหน้าที่พิมพ์ใบมอบตัว</button>'; ?>
                 <!--button class="btn btn-success" data-toggle="modal" data-target="#add_new_record_modal">เพิ่มข้อมูลเพิ่มเติมเพื่อให้เจ้าหน้าที่พิมพ์ใบมอบตัว
-                </button-->
-                </td>
-            </tr>
-        </tbody>
-         </table>
+                                </button-->
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-    <?php }
+
+
+
+
+<?php } ?>
+
+<div class="caption-full">
+</div>
+
+
+
+<?php
 
         } // ส่วนของ END if(!isset($_GET["edite"])){
+
 
     } //end ของ if (mysql_num_rows($resultstu) > 0) {
     else { // ถ้าไม่มีข้อมูล
@@ -469,9 +723,10 @@ function selectfirst($nid)
 
     }
 
-    mysql_close($connected);
+    mysqli_close($mysqli);
 }
 ?>
+
 
 <?php
 function SelectAfterRegister($nid) // ฟังก์ชั่นหลังจากลงทะเบียนแล้ว
@@ -483,36 +738,35 @@ function SelectAfterRegister($nid) // ฟังก์ชั่นหลังจ
         $user = mysql_fetch_array($after);
 
         ?>
-        <div class="caption-full">
-        <div class="table-responsive">
-        <h3 style="color: #c7254e;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span> ข้อมูลการลงทะเบียน (กรุณาจดจำข้อมูล)</h3>
+<div class="caption-full">
+    <div class="table-responsive">
+        <h3 style="color: #c7254e;"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+            ข้อมูลการลงทะเบียน (กรุณาจดจำข้อมูล)</h3>
         <!--p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p-->
-         <table class="table table-hover">
-         <thead>
-            <tr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>รหัสเข้าใช้งาน</th>
+                    <th>รหัสผ่าน</th>
+                    <th>รหัสบัตรประจำตัวประชาชน</th>
+                    <th>เปลี่ยนแปลงข้อมูลรหัสผ่าน</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
 
-                <th>รหัสเข้าใช้งาน</th>
-                <th>รหัสผ่าน</th>
-                <th>รหัสบัตรประจำตัวประชาชน</th>
-                <th>เปลี่ยนแปลงข้อมูลรหัสผ่าน</th>
+                    <td><?php echo $user["RegisNO"]; ?></td>
+                    <td><?php echo $user["RegisPWD"]; ?></td>
+                    <td><?php echo $user["RegisNaID"]; ?></td>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
+                    <td><?php echo "<a href=\"index.php\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>เปลี่ยนแปลงข้อมูลติดต่อผู้ดูแลระบบ</a>"; ?>
+                    </td>
 
-                <td><?php echo $user["RegisNO"]; ?></td>
-                <td><?php echo $user["RegisPWD"]; ?></td>
-                <td><?php echo $user["RegisNaID"]; ?></td>
-
-                <td><?php echo "<a href=\"index.php\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>เปลี่ยนแปลงข้อมูลติดต่อผู้ดูแลระบบ</a>"; ?>
-                </td>
-
-            </tr>
-        </tbody>
-         </table>
-        </div>
-        </div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <?php
 }
 
@@ -531,20 +785,20 @@ function updatedatabt1($nid, $data)
 
     if ($objQuery) {?>
 
-                <div class="alert alert-success" align="center">
-              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php echo "<script type=\"text/javascript\">";
+<div class="alert alert-success" align="center">
+    <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php echo "<script type=\"text/javascript\">";
         echo "window.location=\"index.php?edite=true\" ";
         echo "</script>";
         ?>
-    <?php
+<?php
 } else {?>
 
-               <div class="alert alert-danger" align="center">
-              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php
+<div class="alert alert-danger" align="center">
+    <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php
 }
 
     mysql_close($connected);
@@ -571,20 +825,20 @@ function updatedatabt2($nid, $data)
 
     if ($objQuery) {?>
 
-                <div class="alert alert-success" align="center">
-              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php echo "<script type=\"text/javascript\">";
+<div class="alert alert-success" align="center">
+    <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php echo "<script type=\"text/javascript\">";
         echo "window.location=\"index.php?edite=true\" ";
         echo "</script>";
         ?>
-    <?php
+<?php
 } else {?>
 
-               <div class="alert alert-danger" align="center">
-              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php
+<div class="alert alert-danger" align="center">
+    <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php
 }
 
     mysql_close($connected);
@@ -614,20 +868,20 @@ function updatedatabt3($nid, $data)
 
     if ($objQuery) {?>
 
-                <div class="alert alert-success" align="center">
-              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php echo "<script type=\"text/javascript\">";
+<div class="alert alert-success" align="center">
+    <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php echo "<script type=\"text/javascript\">";
         echo "window.location=\"index.php?edite=true\" ";
         echo "</script>";
         ?>
-    <?php
+<?php
 } else {?>
 
-               <div class="alert alert-danger" align="center">
-              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php
+<div class="alert alert-danger" align="center">
+    <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php
 }
 
     mysql_close($connected);
@@ -651,20 +905,20 @@ function updatedatabt4($nid, $data)
 
     if ($objQuery) {?>
 
-                <div class="alert alert-success" align="center">
-              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php echo "<script type=\"text/javascript\">";
+<div class="alert alert-success" align="center">
+    <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php echo "<script type=\"text/javascript\">";
         echo "window.location=\"index.php?edite=true\" ";
         echo "</script>";
         ?>
-    <?php
+<?php
 } else {?>
 
-               <div class="alert alert-danger" align="center">
-              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php
+<div class="alert alert-danger" align="center">
+    <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php
 }
 
     mysql_close($connected);
@@ -683,20 +937,20 @@ function updatedatabt41($nid, $data)
 
     if ($objQuery) {?>
 
-                    <div class="alert alert-success" align="center">
-                  <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-                   </div>
-            <?php echo "<script type=\"text/javascript\">";
+<div class="alert alert-success" align="center">
+    <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php echo "<script type=\"text/javascript\">";
         echo "window.location=\"index.php?edite=true\" ";
         echo "</script>";
         ?>
-        <?php
+<?php
 } else {?>
 
-                   <div class="alert alert-danger" align="center">
-                  <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-                   </div>
-            <?php
+<div class="alert alert-danger" align="center">
+    <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php
 }
 
     mysql_close($connected);
@@ -714,20 +968,20 @@ function updatedatabt42($nid, $data)
 
     if ($objQuery) {?>
 
-                        <div class="alert alert-success" align="center">
-                      <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-                       </div>
-                <?php echo "<script type=\"text/javascript\">";
+<div class="alert alert-success" align="center">
+    <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php echo "<script type=\"text/javascript\">";
         echo "window.location=\"index.php?edite=true\" ";
         echo "</script>";
         ?>
-            <?php
+<?php
 } else {?>
 
-                       <div class="alert alert-danger" align="center">
-                      <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-                       </div>
-                <?php
+<div class="alert alert-danger" align="center">
+    <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php
 }
 
     mysql_close($connected);
@@ -752,20 +1006,20 @@ function updatedatabt5($nid, $datadd)
 
     if ($objQuery) {?>
 
-                <div class="alert alert-success" align="center">
-              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php echo "<script type=\"text/javascript\">";
+<div class="alert alert-success" align="center">
+    <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php echo "<script type=\"text/javascript\">";
         echo "window.location=\"index.php?edite=true\" ";
         echo "</script>";
         ?>
-    <?php
+<?php
 } else {?>
 
-               <div class="alert alert-danger" align="center">
-              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php
+<div class="alert alert-danger" align="center">
+    <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php
 }
 
     mysql_close($connected);
@@ -786,20 +1040,20 @@ function updatedatabt6($nid, $data)
 
     if ($objQuery) {?>
 
-                <div class="alert alert-success" align="center">
-              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php echo "<script type=\"text/javascript\">";
+<div class="alert alert-success" align="center">
+    <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php echo "<script type=\"text/javascript\">";
         echo "window.location=\"index.php?edite=true\" ";
         echo "</script>";
         ?>
-    <?php
+<?php
 } else {?>
 
-               <div class="alert alert-danger" align="center">
-              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php
+<div class="alert alert-danger" align="center">
+    <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php
 }
 
     mysql_close($connected);
@@ -854,23 +1108,23 @@ function updatedatabt7($nid, $data)
 
     if ($objQuery) {?>
 
-                <div class="alert alert-success" align="center">
-              <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php echo "<script type=\"text/javascript\">";
+<div class="alert alert-success" align="center">
+    <strong>แก้ไขข้อมูลสำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php echo "<script type=\"text/javascript\">";
         echo "window.location=\"index.php?edite=true\" ";
         echo "</script>";
         ?>
-    <?php
+<?php
 } else {?>
 
-               <div class="alert alert-danger" align="center">
-              <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
-               </div>
-        <?php
+<div class="alert alert-danger" align="center">
+    <strong>แก้ไขข้อมูลไม่สำเร็จ</strong> : ข้อมูลทั่วไปของ ID : <?php echo $nid; ?>
+</div>
+<?php
 }
 
-    mysql_close($connected);
+    mysqli_close($connected);
 }
 ?>
 
@@ -880,8 +1134,8 @@ function selectcomeschool()
     include "conn.php";
 
     $sql_studata = "SELECT * FROM sas_studentdata";
-    $resultstu = mysql_query($sql_studata);
-    $rows = mysql_num_rows($resultstu);
+    $resultstu = mysqli_query($mysqli,$sql_studata);
+    $rows = mysqli_num_rows($resultstu);
 
     // if ($selectdata = mysql_fetch_array($resultstu)) {
     $d22 = 0;
@@ -896,7 +1150,7 @@ function selectcomeschool()
     $M26 = 0;
     $M27 = 0;
 
-    while ($row = mysql_fetch_array($resultstu)) {
+    while ($row = mysqli_fetch_array($resultstu)) {
         //printf("ID: %s  Name: %d", $row["SID"], $row["DAYCOME"]);
         if ($row["DAYCOME"] == 22) {
 
@@ -948,7 +1202,7 @@ function selectcomeschool()
 
     // mysql_close($connected);
 
-    return array($d25, $d26, $d27, $d28, $M25, $M26, $M27, $M28);
+    //return array($d25, $d26, $d27, $d28, $M25, $M26, $M27, $M28);
 }
 ?>
 
@@ -1054,153 +1308,171 @@ function checktxtRegisno($txtregisno)
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                กรอกข้อมูลเพิ่มเติมของผู้เรียน</h4><i style="color: #ff0000;"> (** ต้องกรอกข้อมูลให้ครบทุกช่อง ถ้ากรอกไม่ครบระบบจะไม่บันทึกข้อมูล **)</i><br>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    กรอกข้อมูลเพิ่มเติมของผู้เรียน</h4><i style="color: #ff0000;"> (** ต้องกรอกข้อมูลให้ครบทุกช่อง
+                    ถ้ากรอกไม่ครบระบบจะไม่บันทึกข้อมูล **)</i><br>
                 <i style="color: #ff0000;"> (ช่องไหนไม่สามารถกรอกได้ให้กรอก - หรือ 0)</i>
             </div>
             <div class="modal-body">
 
                 <div class="form-group">
                     <label for="add_home_id">รหัสบ้านตามสำเนาทะเบียนบ้าน</label>
-                    <input type="text" id="hid" maxlength="11" placeholder="รหัสบ้านตามสำเนาทะเบียนบ้าน 11 หลัก" class="form-control" required="" autofocus=""
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="hid" maxlength="11" placeholder="รหัสบ้านตามสำเนาทะเบียนบ้าน 11 หลัก"
+                        class="form-control" required="" autofocus="" OnKeyPress="return chkNumber(this)" />
                 </div>
                 <div class="form-group">
                     <label for="add_fa_id">รหัสบัตรประจำตัวประชาชนของบิดา <label id="u1"></label></label>
-                    <input type="text" id="faid" maxlength="13" placeholder="รหัสบัตรประจำตัวประชาชนของบิดา  13 หลัก" class="form-control"
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="faid" maxlength="13" placeholder="รหัสบัตรประจำตัวประชาชนของบิดา  13 หลัก"
+                        class="form-control" OnKeyPress="return chkNumber(this)" />
                 </div>
                 <div class="form-group">
                     <label for="add_fa_religion">ศาสนาของบิดา </label>
-                    <input type="text" id="fareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของบิดา" class="form-control" />
+                    <input type="text" id="fareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของบิดา"
+                        class="form-control" />
 
                 </div>
                 <div class="form-group">
                     <label for="add_fa_jobprovince">สถานที่ทำงานของบิดา จังหวัด </label>
-                    <input type="text" id="fajobprovince" maxlength="20" placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control"/>
+                    <input type="text" id="fajobprovince" maxlength="20"
+                        placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="add_fa_blood">กรุ๊ปเลือดของบิดา </label>
-                    <input type="text" id="fablood" maxlength="3" placeholder="กรอกหมู่โลหิตของบิดา" class="form-control"
-                  />
+                    <input type="text" id="fablood" maxlength="3" placeholder="กรอกหมู่โลหิตของบิดา"
+                        class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="add_fa_income">รายได้ต่อเดือนของบิดา </label>
-                    <input type="text" id="faincome" maxlength="6" placeholder="รายได้ต่อเดือนของบิดา (บาท)" class="form-control"
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="faincome" maxlength="6" placeholder="รายได้ต่อเดือนของบิดา (บาท)"
+                        class="form-control" OnKeyPress="return chkNumber(this)" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_ma_id">รหัสบัตรประจำตัวประชาชนของมารดา <label id="u2"></label></label>
-                    <input type="text" id="maid" maxlength="13" placeholder="รหัสบัตรประจำตัวประชาชนของมารดา  13 หลัก" class="form-control"
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="maid" maxlength="13" placeholder="รหัสบัตรประจำตัวประชาชนของมารดา  13 หลัก"
+                        class="form-control" OnKeyPress="return chkNumber(this)" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_ma_religion">ศาสนาของมารดา </label>
-                    <input type="text" id="mareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของมารดา" class="form-control" />
+                    <input type="text" id="mareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของมารดา"
+                        class="form-control" />
 
                 </div>
                 <div class="form-group">
                     <label for="add_ma_jobprovince">สถานที่ทำงานของมารดา จังหวัด</label>
-                    <input type="text" id="majobprovince" maxlength="20" placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required=""/>
+                    <input type="text" id="majobprovince" maxlength="20"
+                        placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_ma_blood">กรุ๊ปเลือดของมารดา </label>
-                    <input type="text" id="mablood" maxlength="3" placeholder="กรอกหมู่โลหิตของมารดา" class="form-control" required=""
-                  />
+                    <input type="text" id="mablood" maxlength="3" placeholder="กรอกหมู่โลหิตของมารดา"
+                        class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_ma_income">รายได้ต่อเดือนของมารดา</label>
-                    <input type="text" id="maincome" maxlength="6" placeholder="รายได้ต่อเดือนของมารดา (บาท)" class="form-control"
-                    OnKeyPress="return chkNumber(this)" required=""/>
+                    <input type="text" id="maincome" maxlength="6" placeholder="รายได้ต่อเดือนของมารดา (บาท)"
+                        class="form-control" OnKeyPress="return chkNumber(this)" required="" />
                 </div>
 
 
-                 <div class="form-group">
+                <div class="form-group">
                     <label for="add_pa_id">รหัสบัตรประจำตัวประชาชนของผู้ปกครอง <label id="u3"></label></label>
-                    <input type="text" id="paid" maxlength="13" placeholder="รหัสบัตรของผู้ปกครอง 13 หลัก" class="form-control"
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="paid" maxlength="13" placeholder="รหัสบัตรของผู้ปกครอง 13 หลัก"
+                        class="form-control" OnKeyPress="return chkNumber(this)" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_pa_religion">ศาสนาของผู้ปกครอง </label>
-                    <input type="text" id="pareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของผู้ปกครอง" class="form-control" required=""
-                   />
+                    <input type="text" id="pareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของผู้ปกครอง"
+                        class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_pa_jobprovince">สถานที่ทำงานของผู้ปกครอง จังหวัด </label>
-                    <input type="text" id="pajobprovince" maxlength="20" placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required=""/>
+                    <input type="text" id="pajobprovince" maxlength="20"
+                        placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_pa_blood">กรุ๊ปเลือดของผู้ปกครอง </label>
-                    <input type="text" id="pablood" maxlength="3" placeholder="กรอกหมู่โลหิตของผู้ปกครอง" class="form-control" required=""
-                  />
+                    <input type="text" id="pablood" maxlength="3" placeholder="กรอกหมู่โลหิตของผู้ปกครอง"
+                        class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_pa_income">รายได้ต่อเดือนของผู้ปกครอง</label>
-                    <input type="text" id="paincome" required="" maxlength="6" placeholder="รายได้ต่อเดือนของผู้ปกครอง (บาท)" class="form-control"
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="paincome" required="" maxlength="6"
+                        placeholder="รายได้ต่อเดือนของผู้ปกครอง (บาท)" class="form-control"
+                        OnKeyPress="return chkNumber(this)" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_name">Name</label>
-                    <input type="text" id="ename"  placeholder="ชื่อนักเรียนภาษาอังกฤษ" class="form-control" required=""/>
+                    <input type="text" id="ename" placeholder="ชื่อนักเรียนภาษาอังกฤษ" class="form-control"
+                        required="" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_esurname">Surname</label>
-                    <input type="text" id="esurname" placeholder="นามสกุลนักเรียนภาษาอังกฤษ"  class="form-control" required=""/>
+                    <input type="text" id="esurname" placeholder="นามสกุลนักเรียนภาษาอังกฤษ" class="form-control"
+                        required="" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_enicknameth">ชื่อเล่น</label>
-                    <input type="text" id="enicknameth" placeholder="ชื่อเล่นนักเรียนภาษาไทย"  class="form-control" required=""/>
+                    <input type="text" id="enicknameth" placeholder="ชื่อเล่นนักเรียนภาษาไทย" class="form-control"
+                        required="" />
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <label for="add_enickname">Nickname</label>
-                    <input type="text" id="enickname" placeholder="ชื่อเล่นนักเรียนภาษาอังกฤษ"  class="form-control" required=""/>
+                    <input type="text" id="enickname" placeholder="ชื่อเล่นนักเรียนภาษาอังกฤษ" class="form-control"
+                        required="" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_birthpro">จังหวัดเกิด</label>
-                    <input type="text" id="birthpro" placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น"  class="form-control" required=""/>
+                    <input type="text" id="birthpro" placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น"
+                        class="form-control" required="" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_bro">จำนวนพี่น้อง</label>
-                    <input type="text" id="bro" placeholder="จำนวนพี่น้องทั้งหมด (คน)" class="form-control" required="" OnKeyPress="return chkNumber(this)" maxlength="2" />
+                    <input type="text" id="bro" placeholder="จำนวนพี่น้องทั้งหมด (คน)" class="form-control" required=""
+                        OnKeyPress="return chkNumber(this)" maxlength="2" />
                 </div>
-                  <div class="form-group">
-                    <label for="add_broblm">จำนวนพี่น้อง</label>
-                    <input type="text" id="broblm" placeholder="ที่เรียนโรงเรียนบางละมุง (คน)"  class="form-control" required="" OnKeyPress="return chkNumber(this)" maxlength="2" />
+                <div class="form-group">
+                    <label for="add_broblm">จำนวนพี่น้องที่เรียนโรงเรียนธาตุนารายณ์วิทยา</label>
+                    <input type="text" id="broblm" placeholder="ที่เรียนโรงเรียนธาตุนารายณ์วิทยา (คน)"
+                        class="form-control" required="" OnKeyPress="return chkNumber(this)" maxlength="2" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_visit">เดินทางมาโรงเรียน โดย</label>
-                    <input type="text" id="visit" placeholder="เช่น รถโดยสารประจำทางหรือ รถยนต์ส่วนบุคคล เป็นต้น"  class="form-control" required=""/>
+                    <input type="text" id="visit" placeholder="เช่น รถโดยสารประจำทางหรือ รถยนต์ส่วนบุคคล เป็นต้น"
+                        class="form-control" required="" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_direct">ระยะทาง</label>
-                    <input type="text" id="direct" placeholder="หน่วยเป็นกิโลเมตร"  class="form-control" required="" OnKeyPress="return chkNumber(this)" maxlength="4" />
+                    <input type="text" id="direct" placeholder="หน่วยเป็นกิโลเมตร" class="form-control" required=""
+                        OnKeyPress="return chkNumber(this)" maxlength="4" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_pay">ค่าเดินทางไป-กลับ</label>
-                    <input type="text" id="pay" placeholder="หน่วยเป็นบาท"  class="form-control" required=""
-                    OnKeyPress="return chkNumber(this)" maxlength="3" />
+                    <input type="text" id="pay" placeholder="หน่วยเป็นบาท" class="form-control" required=""
+                        OnKeyPress="return chkNumber(this)" maxlength="3" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_weight">น้ำหนัก</label>
-                    <input type="text" id="weight" placeholder="หน่วยเป็น กิโลกรัม"  class="form-control" required=""
-                    OnKeyPress="return chkNumber(this)" maxlength="3" />
+                    <input type="text" id="weight" placeholder="หน่วยเป็น กิโลกรัม" class="form-control" required=""
+                        OnKeyPress="return chkNumber(this)" maxlength="3" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_height">ส่วนสูง</label>
-                    <input type="text" id="height" placeholder="หน่วยเป็น เซนติเมตร"  class="form-control" required=""
-                    OnKeyPress="return chkNumber(this)" maxlength="3" />
+                    <input type="text" id="height" placeholder="หน่วยเป็น เซนติเมตร" class="form-control" required=""
+                        OnKeyPress="return chkNumber(this)" maxlength="3" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_healthy">โรคประจำตัว</label>
-                    <input type="text" id="healthy" placeholder="ถ้าไม่มี 'พิมพ์ว่าไม่มีโรคประจำตัว' หรือ '-'"  class="form-control" required=""/>
+                    <input type="text" id="healthy" placeholder="ถ้าไม่มี 'พิมพ์ว่าไม่มีโรคประจำตัว' หรือ '-'"
+                        class="form-control" required="" />
                     <input type="hidden" id="nid" value="<?php echo $_SESSION["NaID"]; ?>">
                 </div>
 
@@ -1221,163 +1493,177 @@ function checktxtRegisno($txtregisno)
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                แก้ไขข้อมูลเพิ่มเติมของผู้เรียน</h4>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    แก้ไขข้อมูลเพิ่มเติมของผู้เรียน</h4>
             </div>
             <div class="modal-body">
 
 
                 <div class="form-group">
                     <label for="add_home_id">รหัสบ้านตามสำเนาทะเบียนบ้าน</label>
-                    <input type="text" id="ed_hid" maxlength="11" placeholder="รหัสบ้านตามสำเนาทะเบียนบ้าน" class="form-control" required="" autofocus=""
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="ed_hid" maxlength="11" placeholder="รหัสบ้านตามสำเนาทะเบียนบ้าน"
+                        class="form-control" required="" autofocus="" OnKeyPress="return chkNumber(this)" />
                 </div>
                 <div class="form-group">
                     <label for="add_edfa_id">รหัสบัตรประจำตัวประชาชนของบิดา <label id="ed_u1"></label></label>
-                    <input type="text" id="ed_faid" maxlength="13" placeholder="รหัสบัตรของบิดา 13 หลัก" class="form-control" required="" autofocus=""
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="ed_faid" maxlength="13" placeholder="รหัสบัตรของบิดา 13 หลัก"
+                        class="form-control" required="" autofocus="" OnKeyPress="return chkNumber(this)" />
                 </div>
                 <div class="form-group">
                     <label for="add_edfa_religion">ศาสนาของบิดา <label id="ed_u4"></label></label>
-                    <input type="text" id="ed_fareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของบิดา" class="form-control" required=""
-                   />
+                    <input type="text" id="ed_fareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของบิดา"
+                        class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_edfa_jobprovince">สถานที่ทำงานของบิดา จังหวัด <label id="ed_u5"></label></label>
-                    <input type="text" id="ed_fajobprovince" maxlength="20" placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required=""/>
+                    <input type="text" id="ed_fajobprovince" maxlength="20"
+                        placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_edfa_blood">กรุ๊ปเลือดของบิดา <label id="ed_u6"></label></label>
-                    <input type="text" id="ed_fablood" maxlength="3" placeholder="กรอกหมู่โลหิตของบิดา" class="form-control" required=""
-                  />
+                    <input type="text" id="ed_fablood" maxlength="3" placeholder="กรอกหมู่โลหิตของบิดา"
+                        class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_edfa_income">รายได้ต่อเดือนของบิดา <label id="ed_u7"></label></label>
-                    <input type="text" id="ed_faincome" maxlength="6" placeholder="รายได้ต่อเดือนของบิดา (บาท)" class="form-control"
-                    OnKeyPress="return chkNumber(this)" required=""/>
+                    <input type="text" id="ed_faincome" maxlength="6" placeholder="รายได้ต่อเดือนของบิดา (บาท)"
+                        class="form-control" OnKeyPress="return chkNumber(this)" required="" />
                 </div>
 
 
                 <div class="form-group">
                     <label for="add_edma_id">รหัสบัตรประจำตัวประชาชนของมารดา <label id="ed_u2"></label></label>
-                    <input type="text" id="ed_maid" maxlength="13" placeholder="รหัสบัตรของมารดา 13 หลัก" class="form-control" required="" autofocus=""
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="ed_maid" maxlength="13" placeholder="รหัสบัตรของมารดา 13 หลัก"
+                        class="form-control" required="" autofocus="" OnKeyPress="return chkNumber(this)" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_edma_religion">ศาสนาของมารดา <label id="ed_u8"></label></label>
-                    <input type="text" id="ed_mareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของมารดา" class="form-control"   required=""
-                   />
+                    <input type="text" id="ed_mareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของมารดา"
+                        class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_edma_jobprovince">สถานที่ทำงานของมารดา จังหวัด<label id="ed_u9"></label></label>
-                    <input type="text" id="ed_majobprovince" maxlength="20" placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required=""/>
+                    <input type="text" id="ed_majobprovince" maxlength="20"
+                        placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_edma_blood">กรุ๊ปเลือดของมารดา <label id="ed_u10"></label></label>
-                    <input type="text" id="ed_mablood" maxlength="3" placeholder="กรอกหมู่โลหิตของมารดา" class="form-control" required=""
-                  />
+                    <input type="text" id="ed_mablood" maxlength="3" placeholder="กรอกหมู่โลหิตของมารดา"
+                        class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_edma_income">รายได้ต่อเดือนของมารดา <label id="ed_u11"></label></label>
-                    <input type="text" id="ed_maincome" maxlength="6" placeholder="รายได้ต่อเดือนของมารดา (บาท)" class="form-control"
-                    OnKeyPress="return chkNumber(this)" required=""/>
+                    <input type="text" id="ed_maincome" maxlength="6" placeholder="รายได้ต่อเดือนของมารดา (บาท)"
+                        class="form-control" OnKeyPress="return chkNumber(this)" required="" />
                 </div>
 
 
 
                 <div class="form-group">
                     <label for="add_edpa_id">รหัสบัตรประจำตัวประชาชนของผู้ปกครอง <label id="ed_u3"></label></label>
-                    <input type="text" id="ed_paid" maxlength="13" placeholder="รหัสบัตรของผู้ปกครอง 13 หลัก" class="form-control" required="" autofocus=""
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="ed_paid" maxlength="13" placeholder="รหัสบัตรของผู้ปกครอง 13 หลัก"
+                        class="form-control" required="" autofocus="" OnKeyPress="return chkNumber(this)" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_edpa_religion">ศาสนาของผู้ปกครอง <label id="ed_u12"></label></label>
-                    <input type="text" id="ed_pareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของผู้ปกครอง" class="form-control" required=""
-                   />
+                    <input type="text" id="ed_pareligion" maxlength="20" placeholder="ระบุข้อมูลศาสนาของผู้ปกครอง"
+                        class="form-control" required="" />
                 </div>
                 <div class="form-group">
-                    <label for="add_edpa_jobprovince">สถานที่ทำงานของผู้ปกครอง จังหวัด <label id="ed_u13"></label></label>
-                    <input type="text" id="ed_pajobprovince" maxlength="20" placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required=""/>
+                    <label for="add_edpa_jobprovince">สถานที่ทำงานของผู้ปกครอง จังหวัด <label
+                            id="ed_u13"></label></label>
+                    <input type="text" id="ed_pajobprovince" maxlength="20"
+                        placeholder="เช่น 'ระยอง' 'ชลบุรี' 'กรุงเทพมหานคร' เป็นต้น" class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_edpa_blood">กรุ๊ปเลือดของผู้ปกครอง <label id="ed_u14"></label></label>
-                    <input type="text" id="ed_pablood" maxlength="3" placeholder="กรอกหมู่โลหิตของผู้ปกครอง" class="form-control" required=""
-                  />
+                    <input type="text" id="ed_pablood" maxlength="3" placeholder="กรอกหมู่โลหิตของผู้ปกครอง"
+                        class="form-control" required="" />
                 </div>
                 <div class="form-group">
                     <label for="add_edpa_income">รายได้ต่อเดือนของผู้ปกครอง <label id="ed_u15"></label></label>
-                    <input type="text" id="ed_paincome" required="" maxlength="6" placeholder="รายได้ต่อเดือนของผู้ปกครอง (บาท)" class="form-control"
-                    OnKeyPress="return chkNumber(this)"/>
+                    <input type="text" id="ed_paincome" required="" maxlength="6"
+                        placeholder="รายได้ต่อเดือนของผู้ปกครอง (บาท)" class="form-control"
+                        OnKeyPress="return chkNumber(this)" />
                 </div>
 
 
                 <div class="form-group">
                     <label for="add_name">Name</label>
-                    <input type="text" id="ed_ename"  placeholder="ชื่อผู้เรียนภาษาอังกฤษ" class="form-control" required=""/>
+                    <input type="text" id="ed_ename" placeholder="ชื่อผู้เรียนภาษาอังกฤษ" class="form-control"
+                        required="" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_esurname">Surname</label>
-                    <input type="text" id="ed_esurname" placeholder="นามสกุลผู้เรียนภาษาอังกฤษ"  class="form-control" required=""/>
+                    <input type="text" id="ed_esurname" placeholder="นามสกุลผู้เรียนภาษาอังกฤษ" class="form-control"
+                        required="" />
                 </div>
 
                 <div class="form-group">
                     <label for="add_enicknameth">ชื่อเล่น</label>
-                    <input type="text" id="ed_enicknameth" placeholder="ชื่อเล่นนักเรียนภาษาไทย"  class="form-control" required=""/>
+                    <input type="text" id="ed_enicknameth" placeholder="ชื่อเล่นนักเรียนภาษาไทย" class="form-control"
+                        required="" />
                 </div>
-                 <div class="form-group">
+                <div class="form-group">
                     <label for="add_enickname">Nickname</label>
-                    <input type="text" id="ed_enickname" placeholder="ชื่อเล่นผู้เรียนภาษาอังกฤษ"  class="form-control" required=""/>
+                    <input type="text" id="ed_enickname" placeholder="ชื่อเล่นผู้เรียนภาษาอังกฤษ" class="form-control"
+                        required="" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_birthpro">จังหวัดเกิด</label>
-                    <input type="text" id="ed_birthpro" placeholder="จังหวัดเกิด"  class="form-control" required=""/>
+                    <input type="text" id="ed_birthpro" placeholder="จังหวัดเกิด" class="form-control" required="" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_bro">จำนวนพี่น้อง ทั้งหมด (คน)</label>
-                    <input type="text" id="ed_bro"  class="form-control" required="" OnKeyPress="return chkNumber(this)" maxlength="2" />
+                    <input type="text" id="ed_bro" class="form-control" required="" OnKeyPress="return chkNumber(this)"
+                        maxlength="2" />
                 </div>
-                  <div class="form-group">
-                    <label for="add_broblm">จำนวนพี่น้อง ที่เรียนโรงเรียนบางละมุง (คน)</label>
-                    <input type="text" id="ed_broblm"  class="form-control" required="" OnKeyPress="return chkNumber(this)" maxlength="2" />
+                <div class="form-group">
+                    <label for="add_broblm">จำนวนพี่น้อง ที่เรียนโรงเรียนธาตุนารายณ์วิทยา (คน)</label>
+                    <input type="text" id="ed_broblm" class="form-control" required=""
+                        OnKeyPress="return chkNumber(this)" maxlength="2" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_visit">เดินทางมาโรงเรียน โดย</label>
-                    <input type="text" id="ed_visit"   class="form-control" required=""/>
+                    <input type="text" id="ed_visit" class="form-control" required="" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_direct">ระยะทาง (กิโลเมตร)</label>
-                    <input type="text" id="ed_direct"   class="form-control" required="" OnKeyPress="return chkNumber(this)" maxlength="4" />
+                    <input type="text" id="ed_direct" class="form-control" required=""
+                        OnKeyPress="return chkNumber(this)" maxlength="4" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_pay">ค่าเดินทางไป-กลับ (บาท)</label>
-                    <input type="text" id="ed_pay" class="form-control" required=""
-                    OnKeyPress="return chkNumber(this)" maxlength="3" />
+                    <input type="text" id="ed_pay" class="form-control" required="" OnKeyPress="return chkNumber(this)"
+                        maxlength="3" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_weight">น้ำหนัก (กิโลกรัม)</label>
-                    <input type="text" id="ed_weight"   class="form-control" required=""
-                    OnKeyPress="return chkNumber(this)" maxlength="3" />
+                    <input type="text" id="ed_weight" class="form-control" required=""
+                        OnKeyPress="return chkNumber(this)" maxlength="3" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_height">ส่วนสูง (เซนติเมตร)</label>
-                    <input type="text" id="ed_height"  class="form-control" required=""
-                    OnKeyPress="return chkNumber(this)" maxlength="3" />
+                    <input type="text" id="ed_height" class="form-control" required=""
+                        OnKeyPress="return chkNumber(this)" maxlength="3" />
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="add_healthy">โรคประจำตัว</label>
-                    <input type="text" id="ed_healthy"  class="form-control" required=""/>
+                    <input type="text" id="ed_healthy" class="form-control" required="" />
 
                 </div>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="UpdateUserDetails()" >บันทึก การแก้ไขข้อมูล</button>
+                <button type="button" class="btn btn-primary" onclick="UpdateUserDetails()">บันทึก
+                    การแก้ไขข้อมูล</button>
                 <input type="hidden" id="hidden_user_id">
             </div>
         </div>
